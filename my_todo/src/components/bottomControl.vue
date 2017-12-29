@@ -1,12 +1,12 @@
 <template>
-    <div class="bottomControl">
+    <div class="bottomControl" v-show="showBottom">
         <span class="count">{{itemCounts}} item left</span>
-        <span class="chooseType">
-            <span class="chooseAll" :class="{active:isSelect}">All</span>
-            <span class="chooseActive">Active</span>
-            <span class="chooseCom">Completed</span>
+        <span class="chooseType" @click="chooseClick($event)">
+            <span class="chooseAll" :class="{active:(isSelect=='all')}">All</span>
+            <span class="chooseActive" :class="{active:(isSelect=='active')}">Active</span>
+            <span class="chooseCom" :class="{active:(isSelect=='complete')}">Completed</span>
         </span> 
-        <span class="clearCom">Clear completed</span>
+        <span class="clearCom" v-show="showClear" @click="clearComTodo">Clear completed</span>
     </div>
 </template>
 
@@ -17,12 +17,39 @@
         itemCounts:{
             type:Number,
             default:2
-        }
+        },
+        showClear:{
+            type:Boolean
+        },
+        showBottom:Boolean
     },
     data(){
         return {
-            isSelect:true
+            isSelect:'all'
         }
+    },
+    methods: {
+      chooseClick(event){
+          let chooseType = event.target.className;
+          switch(chooseType){
+              case "chooseAll":
+                this.$bus.emit("showTodo",'chooseAll');
+                this.isSelect = 'all';
+                break;
+              case "chooseActive":
+                this.$bus.emit("showTodo",'chooseActive');
+                this.isSelect = 'active';
+                break;
+              case "chooseCom":
+                this.$bus.emit("showTodo",'chooseCom');
+                this.isSelect = 'complete';
+                break;
+          }
+      },
+      //清楚已完成的todo
+      clearComTodo(){
+        this.$bus.emit("clearComTodo");
+      }  
     },
    components: {
 

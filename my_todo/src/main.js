@@ -2,10 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import todo from './todo'
+import VueBus from 'vue-bus'
+import $ from 'jquery'
 // import router from './router'
 
 Vue.config.productionTip = false
-
+Vue.use(VueBus);
 /* eslint-disable no-new */
 new Vue({
   el: '#todo',

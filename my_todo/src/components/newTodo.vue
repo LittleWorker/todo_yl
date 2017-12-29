@@ -1,7 +1,7 @@
 <template>
     <div class="newTodo">
-        <i id="down-arrow"></i>
-        <input type="text" id="inputTodo" placeholder="What needs to be done?">
+        <span id="down-arrow">></span>
+        <input type="text" id="inputTodo" placeholder="What needs to be done?" @keyup.enter="newTodo">
     </div>
 </template>
 
@@ -10,11 +10,20 @@
     name:'newTodo',
     data () {
         return {
-
+            
+        }
+    },
+    methods:{
+        newTodo(event){
+            let todoName=event.target.value;
+            if(!!todoName){
+               this.$bus.emit('addTodo',todoName);
+               //清空当前input框
+                event.target.value="";
+            }
         }
     },
     components: {
-
     }
  }
 </script>
@@ -57,13 +66,12 @@
     border:none;
 }
 #down-arrow{
-    font-size:48px;
-    font-family: 'icomoon' !important;
-    display:inline-block;
-    vertical-align: center;
-    line-height:60px;
-}
-#down-arrow:before{
-    content: "\e902";
+    background-image: url('../assets/image/downArrow.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 48px;
+    height: 100%;
+    background-position: 50%
 }
 </style>
