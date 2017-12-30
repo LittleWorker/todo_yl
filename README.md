@@ -16,13 +16,13 @@
 >
 > 原网站效果图
 >
-> ![orginal_effect](E:\05_GitHub\todo_yl\orginal_effect.png)
+> ![image](https://github.com/LittleWorker/todo_yl/blob/master/orginal_effect.png)
 >
 > 
 >
 > 下面是我仿写出来的效果图
 >
-> ![mytodo_effect](E:\05_GitHub\todo_yl\mytodo_effect.png)
+> ![image](https://github.com/LittleWorker/todo_yl/blob/master/mytodo_effect.png)
 >
 > 
 >
